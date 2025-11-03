@@ -224,7 +224,7 @@ kubectl logs -f deployment/webhook-receiver
 
 # Prometheus alert rules
 http://localhost:9090/alerts
-
+```
 ## **Kết luận**
 
 Đã có một **professional monitoring stack** hoàn chỉnh:
