@@ -123,7 +123,8 @@ kubectl port-forward svc/grafana 3000:3000
 # URL: http://localhost:3000
 # Login: admin / admin
 ```
-<img width="1004" height="533" alt="image" src="https://github.com/user-attachments/assets/81bf438d-bcc4-4a24-b638-42f7f71d14a4" />
+<img width="1783" height="958" alt="image" src="https://github.com/user-attachments/assets/c767d923-0665-4c77-a9ce-8c66ddd34f3b" />
+
 
 **Terminal 4 - Tạo load (tùy chọn)**
 ```powershell
