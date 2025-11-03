@@ -61,23 +61,7 @@ k8s/prometheus-rules.yaml              # Alert rules (CPU, Memory, Error, Restar
 k8s/prometheus-configmap-new.yaml     # Updated Prometheus config với alerting
 k8s/prometheus-deployment-new.yaml    # Updated Prometheus deployment
 k8s/webhook-receiver.yaml             # Webhook receiver K8s deployment
-```
 
-### **Tài liệu hướng dẫn**
-```
-README.md                           # Hướng dẫn chính (tiếng Việt)
-GRAFANA_GUIDE_VI.md                # Chi tiết cách sử dụng Grafana
-GRAFANA_VISUAL_VI.md               # Hình minh họa Grafana UI
-GRAFANA_RESULT_VI.md               # Kết quả khi chạy Grafana
-ALERTMANAGER_SETUP.md              # AlertManager setup chi tiết
-ALERTMANAGER_SUMMARY_VI.md         # AlertManager tóm tắt
-test-load.ps1                      # Script test load (normal)
-load-test-jmeter-style.ps1        # Script test load (heavy - for alert)
-webhook-receiver.py                # Flask app để receive alerts
-Dockerfile.webhook                 # Docker image cho webhook receiver
-```
-
----
 
 ## 🚀 Cách khởi chạy lại (nếu cần)
 
@@ -177,19 +161,17 @@ Bạn sẽ thấy dashboard **"Spring Boot Kubernetes Monitoring"** với 4 bi�
 
 ---
 
-## 🚨 AlertManager - Cảnh báo tự động
+##  AlertManager - Cảnh báo tự động
 
 ### **Đặc điểm**
 Nhận cảnh báo **tự động** khi:
-- 📊 **CPU > 80%** trong 1 phút → CRITICAL
-- 💾 **Memory > 90%** trong 2 phút → WARNING
-- ❌ **Error Rate > 5%** trong 5 phút → WARNING
-- 🔄 **Pod Restart > 2 lần** trong 15 phút → CRITICAL
+-  **CPU > 80%** trong 1 phút → CRITICAL
+-  **Memory > 90%** trong 2 phút → WARNING
+-  **Error Rate > 5%** trong 5 phút → WARNING
+-  **Pod Restart > 2 lần** trong 15 phút → CRITICAL
 
 ### **Hình thức thông báo**
-- 📧 **Email** (Gmail SMTP)
-- 🔗 **HTTP Webhook** (custom service)
-- 💬 **Slack** (tùy chọn)
+-  **Email** (Gmail SMTP)
 
 ### **Cấu hình**
 ```powershell
@@ -264,56 +246,6 @@ kubectl logs -f deployment/webhook-receiver
 
 # Prometheus alert rules
 http://localhost:9090/alerts
-```
-
-**Chi tiết**: Xem file `ALERTMANAGER_SETUP.md` và `ALERTMANAGER_SUMMARY_VI.md`
-
----
-
-## Dọn dẹp (nếu muốn xóa toàn bộ)
-
-```powershell
-# Xóa Spring Boot
-kubectl delete deployment springboot-k8s
-kubectl delete svc springboot-k8s
-
-# Xóa Prometheus
-kubectl delete deployment prometheus
-kubectl delete svc prometheus
-kubectl delete configmap prometheus-config prometheus-rules
-kubectl delete sa prometheus
-kubectl delete clusterrole prometheus
-kubectl delete clusterrolebinding prometheus
-
-# Xóa AlertManager
-kubectl delete deployment alertmanager
-kubectl delete svc alertmanager
-kubectl delete configmap alertmanager-config
-
-# Xóa Grafana
-kubectl delete deployment grafana
-kubectl delete svc grafana
-kubectl delete configmap grafana-datasource grafana-dashboard grafana-dashboard-provisioner
-
-# Xóa Webhook Receiver
-kubectl delete deployment webhook-receiver
-kubectl delete svc webhook-receiver
-
-# Xóa Docker images
-docker rmi springboot-k8s:0.0.3 webhook-receiver:latest prometheus:latest grafana/grafana:latest
-```
----
-
-## Đạt được gì
-
-✅ **Monitoring**: Giám sát app real-time
-✅ **Metrics**: JVM, CPU, Memory, HTTP, Threads
-✅ **Visualization**: Dashboard đẹp trong Grafana
-✅ **Alerting**: Cảnh báo tự động qua Email + Webhook + Slack
-✅ **Scalable**: Có thể thêm nhiều metrics & alert rules
-✅ **Production-ready**: RBAC, Health checks, Service discovery, Alert routing
-✅ **DevOps Skills**: K8s, Docker, Prometheus, Grafana, AlertManager
-
 
 ## **Kết luận**
 
