@@ -194,7 +194,11 @@ while ((Get-Date) -lt $endTime) {
 
 ### **Cấu hình Gmail Email**
 1. Bật 2-Factor Authentication
+   <img width="1200" height="211" alt="image" src="https://github.com/user-attachments/assets/09cac215-af46-4483-a98c-5c04eab1930f" />
+
 2. Tạo App Password: https://myaccount.google.com/apppasswords
+   <img width="991" height="724" alt="image" src="https://github.com/user-attachments/assets/dd70f277-1d1d-44fa-8c7c-abb7b074bc35" />
+
 3. Update `k8s/alertmanager-config.yaml`:
 ```yaml
 global:
