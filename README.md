@@ -141,6 +141,8 @@ Nhận cảnh báo **tự động** khi:
 -  **Memory > 90%** trong 2 phút → WARNING
 -  **Error Rate > 5%** trong 5 phút → WARNING
 -  **Pod Restart > 2 lần** trong 15 phút → CRITICAL
+<img width="1825" height="744" alt="image" src="https://github.com/user-attachments/assets/f567531b-130c-46a9-9c77-7e6f4455da7a" />
+
 
 ### **Hình thức thông báo**
 -  **Email** (Gmail SMTP)
