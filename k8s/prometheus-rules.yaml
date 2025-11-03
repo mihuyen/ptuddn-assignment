@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+data:
+  alert-rules.yml: |
+    groups:
+      - name: springboot_alerts
+        interval: 30s
+        rules:
+          # CPU Alert: CPU Usage > 80% trong 1 phút
+          - alert: HighCPUUsage
+            expr: (rate(process_cpu_seconds_total[1m]) * 100) > 80
+            for: 1m
+            labels:
+              severity: critical
+              service: springboot
+            annotations:
+              summary: "🚨 High CPU Usage Detected"
+              description: "Pod {{ $labels.pod }} CPU usage is {{ $value | humanize }}% (> 80%)"
+              dashboard: "http://localhost:3000/d/springboot-k8s"
+
+          # Memory Alert: JVM Memory > 90%
+          - alert: HighMemoryUsage
+            expr: (jvm_memory_used_bytes{area="heap"} / jvm_memory_max_bytes{area="heap"} * 100) > 90
+            for: 2m
+            labels:
+              severity: warning
+              service: springboot
+            annotations:
+              summary: "⚠️ High Memory Usage"
+              description: "Pod {{ $labels.pod }} Memory usage is {{ $value | humanize }}% (> 90%)"
+
+          # HTTP Error Rate Alert: > 5% error rate
+          - alert: HighErrorRate
+            expr: (rate(http_server_requests_seconds_count{status=~"5.."}[5m]) / rate(http_server_requests_seconds_count[5m]) * 100) > 5
+            for: 5m
+            labels:
+              severity: warning
+              service: springboot
+            annotations:
+              summary: "⚠️ High Error Rate Detected"
+              description: "Error rate is {{ $value | humanize }}% (> 5%)"
+
+          # Pod Restart Alert
+          - alert: PodFrequentRestarts
+            expr: increase(kube_pod_container_status_restarts_total[15m]) > 2
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "🚨 Pod Frequent Restarts"
+              description: "Pod {{ $labels.pod }} restarted {{ $value }} times in 15m"
