@@ -2,7 +2,7 @@
 
 ## Tóm tắt công việc
 
-Bạn vừa tạo một **Full Monitoring Stack** cho Spring Boot chạy trên Kubernetes:
+Đã tạo một **Full Monitoring Stack** cho Spring Boot chạy trên Kubernetes:
 
 - ✅ **Spring Boot App** - 2 replicas trên K8s
 - ✅ **Prometheus** - Thu thập metrics
@@ -130,28 +130,6 @@ kubectl port-forward svc/grafana 3000:3000
 ./test-load.ps1 -Duration 60 -Interval 1
 ```
 
----
-
-## Kiểm tra status
-
-```powershell
-# Kiểm tra tất cả pods
-kubectl get pods
-
-# Kiểm tra services
-kubectl get svc
-
-# Kiểm tra Spring Boot logs
-kubectl logs deployment/springboot-k8s
-
-# Kiểm tra Prometheus logs
-kubectl logs deployment/prometheus
-
-# Kiểm tra Grafana logs
-kubectl logs deployment/grafana
-```
-
----
 ---
 
 ##  AlertManager - Cảnh báo tự động
