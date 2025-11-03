@@ -61,7 +61,7 @@ k8s/prometheus-rules.yaml              # Alert rules (CPU, Memory, Error, Restar
 k8s/prometheus-configmap-new.yaml     # Updated Prometheus config với alerting
 k8s/prometheus-deployment-new.yaml    # Updated Prometheus deployment
 k8s/webhook-receiver.yaml             # Webhook receiver K8s deployment
-
+```
 
 ## 🚀 Cách khởi chạy lại (nếu cần)
 
@@ -106,12 +106,16 @@ kubectl apply -f k8s/grafana-dashboard.yaml
 kubectl port-forward svc/springboot-k8s 8080:80
 # URL: http://localhost:8080
 ```
+<img width="1004" height="428" alt="image" src="https://github.com/user-attachments/assets/695ba873-3908-4d43-89d9-37477a02e1f1" />
+
 
 **Terminal 2 - Prometheus**
 ```powershell
 kubectl port-forward svc/prometheus 9090:9090
 # URL: http://localhost:9090
 ```
+<img width="1004" height="381" alt="image" src="https://github.com/user-attachments/assets/f8ebe571-0e41-4f95-bbc8-4f38ff064d43" />
+
 
 **Terminal 3 - Grafana**
 ```powershell
@@ -119,6 +123,7 @@ kubectl port-forward svc/grafana 3000:3000
 # URL: http://localhost:3000
 # Login: admin / admin
 ```
+<img width="1004" height="533" alt="image" src="https://github.com/user-attachments/assets/81bf438d-bcc4-4a24-b638-42f7f71d14a4" />
 
 **Terminal 4 - Tạo load (tùy chọn)**
 ```powershell
@@ -147,18 +152,6 @@ kubectl logs deployment/grafana
 ```
 
 ---
-
-## Khi bạn mở Grafana
-
-Bạn sẽ thấy dashboard **"Spring Boot Kubernetes Monitoring"** với 4 biểu đồ:
-
-1. **JVM Heap Memory Usage** - Memory sử dụng theo thời gian
-2. **CPU Usage %** - CPU hiện tại
-3. **HTTP Requests Per Second** - Traffic đến app
-4. **Active Threads** - Threads đang chạy
-
-**Chi tiết**: Xem file `GRAFANA_RESULT_VI.md`
-
 ---
 
 ##  AlertManager - Cảnh báo tự động
